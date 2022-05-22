@@ -1,0 +1,36 @@
+{"frames": [
+
+{
+	"filename": "tile_concrete.png",
+	"frame": {"x":0,"y":0,"w":151,"h":63},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":20,"y":108,"w":151,"h":63},
+	"sourceSize": {"w":151,"h":63}
+},
+{
+	"filename": "tile_grass.png",
+	"frame": {"x":0,"y":63,"w":151,"h":63},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":20,"y":108,"w":151,"h":63},
+	"sourceSize": {"w":151,"h":63}
+},
+{
+	"filename": "tile_tree.png",
+	"frame": {"x":0,"y":126,"w":151,"h":160},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":20,"y":11,"w":151,"h":160},
+	"sourceSize": {"w":151,"h":160}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tiles.png",
+	"format": "RGBA8888",
+	"size": {"w":151,"h":286},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:dcb41972350c7fff63723680a649d1c3:f9ded20ecdf28270ef7b06041af052ea:accbe1e7e294ded8391337fc1c446319$"
+}
+}

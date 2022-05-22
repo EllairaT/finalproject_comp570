@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "tower_brick.png",
+	"frame": {"x":0,"y":0,"w":56,"h":91},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":65,"y":61,"w":56,"h":91},
+	"sourceSize": {"w":56,"h":91}
+},
+{
+	"filename": "tower_mortar.png",
+	"frame": {"x":168,"y":0,"w":90,"h":76},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":53,"y":83,"w":90,"h":76},
+	"sourceSize": {"w":90,"h":76}
+},
+{
+	"filename": "tower_stone.png",
+	"frame": {"x":56,"y":0,"w":56,"h":91},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":65,"y":61,"w":56,"h":91},
+	"sourceSize": {"w":56,"h":91}
+},
+{
+	"filename": "tower_wood.png",
+	"frame": {"x":112,"y":0,"w":56,"h":91},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":65,"y":61,"w":56,"h":91},
+	"sourceSize": {"w":56,"h":91}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "towers.png",
+	"format": "RGBA8888",
+	"size": {"w":244,"h":91},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:18f852110c44f4be9004b429fa054ca8:bf01da400cb82ddbe814e3c0ee51acd4:84ae74610825492ccdd391d01ed682df$"
+}
+}
