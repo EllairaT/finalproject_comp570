@@ -1,11 +1,24 @@
+
+/**
+* Sketch for main menu screen.
+*
+* https://www.sojamo.de/libraries/controlP5/examples/use/ControlP5callback/ControlP5callback.pde
+* @author Ellaira Torio | 18021275
+*/
+
+import java.util.Map;
+
 class MainMenu {
     PImage bgImg; 
     PImage logo; 
+    String[] options = new String[]{"play", "tutorial", "exit"};
     
     public MainMenu() {
         try {
             bgImg = requestImage("menu_bg.png");
             logo = requestImage("Logo_pixel.png");
+            renderTextButtons();
+            
         } catch(Exception e) {
             ui.showException("Something went wrong", "Error", e);
         }
@@ -14,7 +27,6 @@ class MainMenu {
     public void display() {
         renderBackground();
         renderLogo();
-        renderTextButtons();
     }
     
     private void renderBackground() {
@@ -30,7 +42,7 @@ class MainMenu {
                 noStroke();
                 rect(x,y, 10,10);
             }
-        }
+        }  
     }
     
     private void renderLogo() {
@@ -43,9 +55,28 @@ class MainMenu {
         int spacing = 120;
         fill(255);
         textAlign(CENTER);
-        text("PLAY", logo.width / 2, logo.height + spacing);
-        text("TUTORIAL", logo.width / 2, logo.height + (spacing * 2));
-        text("EXIT", logo.width / 2, logo.height + (spacing * 3));
+        // text("PLAY", logo.width / 2, logo.height + spacing);
+        // text("TUTORIAL", logo.width / 2, logo.height + (spacing * 2));
+        // text("EXIT", logo.width / 2, logo.height + (spacing * 3));
+        
+        
+        for (int i = 0; i < options.length; i++) {
+            cp5.addTextlabel(options[i] + "_btn")
+               .setText(options[i])
+               .setPosition(logo.width / 2, logo.height + (spacing * i))
+               .setColorValue(255)
+               .setFont(font);
+        }
     }
+    // public void play(float value) {
+    //     println(value);
+// }
+    
+    public void clickHandler() {
+        println("lmao nice");
+    }
+    // public void exit(float value) {
+    //  println(value);
+// }
 }
 

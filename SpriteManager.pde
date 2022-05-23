@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.io.File;
 
 enum SpriteType{
     STRUCTURE,
@@ -7,18 +8,17 @@ enum SpriteType{
 }
 
 class SpriteManager {
-    String[] filenames;
+    HashMap<String, JSONObject> spriteData;
     ArrayList<Sprite> sprites;
-    String path = "./data/json";
+    String path = "./Sprites/";
     
     public SpriteManager() {
         
     }
     
-    // private String[] loadFiles() {
-    //     File folder = new File(path);
-    
-// }
+    private void loadFiles() {
+        
+    }
     
     public void prepareSprites() {
         
