@@ -1,7 +1,7 @@
 class Sprite {
     SpriteType type;
     String name;
-    float x,y,w;
+    float x,y,w,h;
     boolean isAnimated;
     PImage spriteSheet;
     JSONObject spriteData;

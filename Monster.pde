@@ -1,4 +1,4 @@
-abstract class Monster  {
+class Monster extends GameEntity {
     String name;
     float speed, damage;
     boolean isAlive;
@@ -10,13 +10,6 @@ abstract class Monster  {
         
     }
     
-    public void spawn() {
-        isAlive = true;
-    }
-    
-    public void despawn() {
-        isAlive = false;
-    }
     
     public void walk() {}
     public void attack() {}

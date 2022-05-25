@@ -1,0 +1,105 @@
+{
+	"MONSTER": [
+		{
+			"name": "Demon",
+			"dataSource": "Sprites/monster_demon.json",
+			"imgSource": "Sprites/monster_demon.png",
+			"isAnimated": true,
+			"defaultSpeed": 0.5,
+			"damage": 20,
+			"health": 150
+		},
+		{
+			"name": "Golem",
+			"dataSource": "Sprites/monster_golem.json",
+			"imgSource": "Sprites/monster_golem.png",
+			"isAnimated": true,
+			"defaultSpeed": 0.3,
+			"damage": 30,
+			"health": 300
+		}
+	],
+	"TOWER": {
+		"meta": {
+			"dataSource": "Sprites/towers.json",
+			"imgSource": "Sprites/towers.png"
+		},
+		"objects": [
+			{
+				"name": "Brick",
+				"filename": "tower_brick.png",
+				"isAnimated": false,
+				"cost": 80,
+				"health": 1500
+			},
+			{
+				"name": "Stone",
+				"filename": "tower_stone.png",
+				"isAnimated": false,
+				"cost": 100,
+				"health": 2000
+			},
+			{
+				"name": "Wood",
+				"filename": "tower_wood.png",
+				"isAnimated": false,
+				"cost": 30,
+				"health": 1000
+			},
+			{
+				"name": "Mortar",
+				"filename": "tower_mortar.png",
+				"isAnimated": true,
+				"cost": 150,
+				"damage": 30,
+				"health": 500
+			}
+		]
+	},
+	"CARD": {
+		"meta": {
+			"dataSource": "Sprites/cards.json",
+			"imgSource": "Sprites/cards.png"
+		},
+		"objects": [
+			{
+				"name": "demon",
+				"filename": "sprite_card_monster_demon.png",
+				"isAnimated": false
+			},
+			{
+				"name": "golem",
+				"filename": "sprite_card_monster_golem.png",
+				"isAnimated": false
+			},
+			{
+				"name": "titan",
+				"filename": "sprite_card_monster_titan.png",
+				"isAnimated": false
+			}
+		]
+	},
+	"TILES": {
+		"meta": {
+			"dataSource": "Sprites/tiles.json",
+			"imgSource": "Sprites/tiles.png"
+		},
+		"objects": [
+			{
+				"name": "grass",
+				"filename": "tile_grass.png",
+				"isAnimated": false
+			},
+			{
+				"name": "tree",
+				"filename": "tile_tree.png",
+				"isAnimated": false
+			},
+			{
+				"name": "concrete",
+				"filename": "tile_concrete.png",
+				"isAnimated": false
+			}
+		]
+	}
+}

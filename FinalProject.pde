@@ -14,6 +14,10 @@ PFont font;
 
 ControlP5 cp5;
 /**
+IMPORTANT: USER GAME_INFO.JSON TO STORE FILE INFO
+AND IMPORTANT GAME INFO
+SO THAT WE DONT HAVE TO SCROLL THROUGH THE WHOLE CODE TO CHANGE THINGS 
+
 Setting up variables and libraries to be used globally.
 cp5 in particular needs to be defined in setup.
 */
@@ -31,3 +35,7 @@ void draw() {
     game.displayMainMenu();
 }
 
+// multiple images will be present 
+void preload() {
+    
+}

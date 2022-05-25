@@ -25,6 +25,7 @@ class World {
     private void loadTiles() {
         
     }
+    
     private boolean isEdgeTile(int x, int y) {
         int xMin = max(0, x - 1);
         int xMax = min(rows - 1, x + 1);

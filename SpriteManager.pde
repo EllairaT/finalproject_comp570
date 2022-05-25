@@ -1,32 +1,30 @@
 import java.util.Map;
 import java.io.File;
+import java.util.Iterator;
 
 enum SpriteType{
-    STRUCTURE,
+    TOWER,
     MONSTER,
-    TILE
+    TILES, 
+    CARD,
 }
 
 class SpriteManager {
-    HashMap<String, JSONObject> spriteData;
     ArrayList<Sprite> sprites;
-    String path = "./Sprites/";
+    File folder = new File(dataPath("Sprites"));
+    JSONObject data;
     
     public SpriteManager() {
-        
+        sprites = new ArrayList<Sprite>();
+        data = loadJSONObject("game_info.json");
     }
     
-    private void loadFiles() {
+    public void loadData() {
+        // Get the array of items from the JSON object
+        println(data.getJSONObject("Game"));
+    }   
+    
+    private void loadJSON() {
         
     }
-    
-    public void prepareSprites() {
-        
-    }
-    
-    public void showAllSprites() {}
-    
-    
-    public void getSprite(String name) {}
-    
 }
