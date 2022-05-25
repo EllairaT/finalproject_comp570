@@ -1,0 +1,68 @@
+import java.util.Map;
+import java.io.File;
+import java.util.Iterator;
+import java.util.Set;
+
+enum SpriteType{
+    TOWER,
+    MONSTER,
+    TILES, 
+    CARD,
+}
+
+class SpriteManager {
+    ArrayList<Sprite> sprites;
+    File folder = new File(dataPath("Sprites"));
+    HashMap<String,Meta> spriteSheetData;
+    JSONObject data;
+    
+    class Meta{     // inner meta class
+        PImage img;
+        JSONObject data;
+        public Meta(String i, String o) {
+            try{
+                img = loadImage(i);
+                data = loadJSONObject(o);
+                
+                println("successfully loaded meta files");
+            }
+            catch(Exception e) {
+                println("Error loading files: " +  e);
+            }
+        }        
+    }
+    
+    public SpriteManager() {
+        sprites = new ArrayList<Sprite>();
+        spriteSheetData = new HashMap<String,Meta>();
+        data = loadJSONObject("game_info.json");
+    }
+    
+    public void loadData() {
+        Set<String> arr = data.keys();
+        
+        for (String o : arr) {
+            if (data.get(o) instanceof JSONObject) {
+                
+                String key = o;
+                JSONObject m = data.getJSONObject(o).getJSONObject("meta");
+                Meta meta = new Meta(m.getString("imgSource"), m.getString("dataSource"));
+                
+                spriteSheetData.put(key, meta);
+            }
+            else{
+                // println(data.getJSONArray(o));
+            }
+        }
+    }
+    
+    // private createSprite(SpriteType type, String name) {
+    //     switch(type) {
+    //         case MONSTER : 
+    //             break;    
+    //         default : 
+    //         break;
+    
+    //     }
+// }
+}

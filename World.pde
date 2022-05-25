@@ -16,14 +16,20 @@ class World {
     Tile[][] tiles;
     int rows = 50;
     int cols = 50;
+    int isoW = 151;
+    int isoH = 63;
+    int isoX = width / 2;
+    int isoY = (height - isoH * 63) / 2;
     
     
     public World() {
         tiles = new Tile[rows][cols];
+        initializeTiles();
     } 
     
-    private void loadTiles() {
-        
+    public void createWorld() {
+        println(sm.getSpriteByName("tree"));
+        drawTiles();
     }
     
     private boolean isEdgeTile(int x, int y) {
@@ -42,7 +48,8 @@ class World {
     public void initializeTiles() {
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < cols; y++) {
-                Tile t = new Tile(isEdgeTile(x,y), x,y);
+                PVector v = new PVector(x, y);
+                Tile t = new Tile(isEdgeTile(x,y), cartesianToIso(v));
                 tiles[x][y] = t;
             }
         }
@@ -58,10 +65,12 @@ class World {
     
     public PVector cartesianToIso(PVector p) {
         // Cartesian to isometric:
-        float isoX = p.x - p.y;
-        float isoY = (p.x + p.y) / 2;
-        return new PVector(isoX,isoY);
+        PVector newVector = new PVector(0,0);
+        newVector.x = p.x - p.y;
+        newVector.y = (p.x + p.y) / 2;
+        return newVector;
     }
+    
     // public PVector IsoToCartesian(PVector p) {  
     //     // TODO: convert to java
     //     // var tempPt : Point = new Point(0, 0);

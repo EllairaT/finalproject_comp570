@@ -1,20 +1,23 @@
 class Sprite {
     SpriteType type;
     String name;
-    float x,y,w,h;
     boolean isAnimated;
-    PImage spriteSheet;
+    PImage spriteImg;
     JSONObject spriteData;
     
-    public Sprite(SpriteType t, String n, boolean b, PImage sh, JSONObject d) {
+    public Sprite(SpriteType t, String n, boolean b, PImage img, JSONObject d) {
         type = t;
         name = n;
         isAnimated = b;
-        spriteSheet = sh;
+        spriteImg = img;
         spriteData = d;
     }
     
+    public PImage getImage() {
+        return spriteImg;
+    }
     public void showSprite() {}
+    
 }
 
 class AnimatedSprite extends Sprite{

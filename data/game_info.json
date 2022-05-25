@@ -71,11 +71,6 @@
 				"name": "golem",
 				"filename": "sprite_card_monster_golem.png",
 				"isAnimated": false
-			},
-			{
-				"name": "titan",
-				"filename": "sprite_card_monster_titan.png",
-				"isAnimated": false
 			}
 		]
 	},

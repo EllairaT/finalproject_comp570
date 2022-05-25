@@ -2,18 +2,22 @@
 class Tile {
     boolean isOccupied;
     boolean isEdgeTile;
-    int xPos, yPos;
-    PImage texture;
+    float xPos, yPos;
+    PImage img;
     
-    public Tile(boolean isEdge, int x, int y) {
+    public Tile(boolean isEdge, PVector p) {
         isEdgeTile = isEdge;
-        // texture =  isEdgeTile ? loadImage("Tiles/tile_tree.png") : loadImage("Tiles/tile_grass.png");
-        texture = loadImage("Sprites/tiles.png");
-        xPos = x * texture.width;
-        yPos = y * texture.height;
+        if (sm != null) {
+            img = isEdgeTile ? sm.getSpriteByName("concrete").getImage() : sm.getSpriteByName("grass").getImage();
+            
+            if (img != null) {
+                xPos = p.x * img.width;
+                yPos = p.y * img.height;
+            }
+        }
     }
     
     public void drawTile() {
-        image(texture, xPos, yPos);
+        image(img, xPos, yPos);
     }
 }

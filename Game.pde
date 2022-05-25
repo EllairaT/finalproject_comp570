@@ -6,19 +6,17 @@
 
 class Game {
     MainMenu mainMenu;
-    SpriteManager spriteManager;
+    
+    World world;
+    
     public Game() {
         mainMenu = new MainMenu();
-        spriteManager = new SpriteManager();
-        printSprites();
+        world = new World();
+        
+        world.createWorld();
     }
     
     public void displayMainMenu() {
         mainMenu.display();
     }
-    
-    public void printSprites() {
-        spriteManager.loadData();
-    }
-    
 }
