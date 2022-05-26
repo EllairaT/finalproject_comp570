@@ -14,17 +14,18 @@ class MainMenu {
     String[] options = new String[]{"play", "tutorial", "exit"};
     
     public MainMenu() {
-        try {
-            bgImg = requestImage("menu_bg.png");
-            logo = requestImage("Logo_pixel.png");
-            renderTextButtons();
-            
-        } catch(Exception e) {
-            ui.showException("Something went wrong", "Error", e);
-        }
+        // try {
+        //     bgImg = requestImage("menu_bg.png");
+        //     logo = requestImage("Logo_pixel.png");
+        
+        
+    // } catch(Exception e) {
+        //     ui.showException("Something went wrong", "Error", e);
+    // }
     }
     
     public void display() {
+        renderTextButtons();
         renderBackground();
         renderLogo();
     }

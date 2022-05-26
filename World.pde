@@ -7,19 +7,16 @@
 * as local X increases, global X and Y increase.
 * as local Y increases, global Y increases but X decreases. This is how we get the slanted look
 
+https://wintermutedigital.com/post/isometric-art-games/
+https://gamedevelopment.tutsplus.com/tutorials/creating-isometric-worlds-a-primer-for-game-developers--gamedev-6511
 
 * @author Ellaira Torio | 18021275
 */
 
 class World {
-    
     Tile[][] tiles;
-    int rows = 50;
-    int cols = 50;
-    int isoW = 151;
-    int isoH = 63;
-    int isoX = width / 2;
-    int isoY = (height - isoH * 63) / 2;
+    int rows = 20;
+    int cols = 20;
     
     
     public World() {
@@ -27,8 +24,7 @@ class World {
         initializeTiles();
     } 
     
-    public void createWorld() {
-        println(sm.getSpriteByName("tree"));
+    public void showWorld() {
         drawTiles();
     }
     
@@ -44,39 +40,22 @@ class World {
         return false;
     }
     
-    
     public void initializeTiles() {
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < cols; y++) {
-                PVector v = new PVector(x, y);
-                Tile t = new Tile(isEdgeTile(x,y), cartesianToIso(v));
+                PVector v = new PVector(x,y);
+                Tile t = new Tile(isEdgeTile(x,y), x, y);
                 tiles[x][y] = t;
             }
         }
     }
     
     public void drawTiles() {
-        for (Tile[] i : tiles) {
-            for (Tile t : i) {
-                t.drawTile();
+        translate(0, -100);
+        for (int x = 0; x < rows; x++) {
+            for (int y = 0; y < cols; y++) {
+                tiles[x][y].drawTile(x,y);
             }
         }
     }
-    
-    public PVector cartesianToIso(PVector p) {
-        // Cartesian to isometric:
-        PVector newVector = new PVector(0,0);
-        newVector.x = p.x - p.y;
-        newVector.y = (p.x + p.y) / 2;
-        return newVector;
-    }
-    
-    // public PVector IsoToCartesian(PVector p) {  
-    //     // TODO: convert to java
-    //     // var tempPt : Point = new Point(0, 0);
-    //     // tempPt.x = (2 * pt.y + pt.x) / 2;
-    //     // tempPt.y = (2 * pt.y - pt.x) / 2;
-    //     // return(tempPt);
-// }
-    
 }

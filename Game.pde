@@ -5,18 +5,26 @@
 */
 
 class Game {
-    MainMenu mainMenu;
+    
     
     World world;
     
     public Game() {
-        mainMenu = new MainMenu();
+        
         world = new World();
         
-        world.createWorld();
     }
     
+    
+    
     public void displayMainMenu() {
-        mainMenu.display();
+        // mainMenu.display();       
+        
     }
+    
+    public void drawWorld() {
+        world.showWorld();
+    }
+    
+    
 }

@@ -88,6 +88,7 @@ class SpriteManager {
             String key = entry.getKey();
             Meta value = entry.getValue();
             
+            println("Creating " + key + " sprites");
             // those with the objects array have multiple sprites in one image file 
             // so these would be tiles, tower, card
             if (value.objects != null) {            
@@ -113,6 +114,7 @@ class SpriteManager {
                 // createAnimatedSprite();
             }
         }
+        println("finished");
     }
     
     // private void createAnimatedSprite(){}
@@ -132,7 +134,7 @@ class SpriteManager {
         return null;
     }
     
-    public ArrayList<Sprite> getSpritesByType(SpriteType type) {
+    public  ArrayList<Sprite> getSpritesByType(SpriteType type) {
         ArrayList<Sprite> newList = new ArrayList<Sprite>();
         for (Sprite o : sprites) {
             if (type == o.type) {
@@ -143,7 +145,7 @@ class SpriteManager {
         return newList;
     }
     
-    public Sprite getSpriteByName(String name) {
+    public  Sprite getSpriteByName(String name) {
         for (Sprite o : sprites) {
             if (name.equals(o.name)) {
                 return o;
