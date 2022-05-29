@@ -15,9 +15,8 @@ https://gamedevelopment.tutsplus.com/tutorials/creating-isometric-worlds-a-prime
 
 class World {
     Tile[][] tiles;
-    int rows = 20;
-    int cols = 20;
-    
+    int rows = 15;
+    int cols = 15;
     
     public World() {
         tiles = new Tile[rows][cols];
@@ -51,10 +50,9 @@ class World {
     }
     
     public void drawTiles() {
-        translate(0, -100);
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < cols; y++) {
-                tiles[x][y].drawTile(x,y);
+                tiles[x][y].drawTile();
             }
         }
     }

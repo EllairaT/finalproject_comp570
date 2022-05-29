@@ -20,9 +20,10 @@ class Meta{
     JSONObject data;
     JSONArray objects;
     SpriteType type;
+    
     public Meta(String i, String o, JSONArray arr, String t) {
         try{
-            img = loadImage(i);
+            img = loadImage(i); // this is where the images and such actually get loaded in 
             data = loadJSONObject(o);
             objects = arr;
             type = SpriteType.valueOf(t);
@@ -36,7 +37,6 @@ class Meta{
     public String toString() {
         return img.toString() + "; " + type.toString() + "; " + data.hashCode() + "; " + objects.toString();
     }
-    
 }
 
 class SpriteManager {
@@ -145,7 +145,7 @@ class SpriteManager {
         return newList;
     }
     
-    public  Sprite getSpriteByName(String name) {
+    public Sprite getSpriteByName(String name) {
         for (Sprite o : sprites) {
             if (name.equals(o.name)) {
                 return o;
@@ -159,13 +159,4 @@ class SpriteManager {
         loadData();
         createSprites();
     }
-    // private createSprite(SpriteType type, String name) {
-    //  switch(type) {
-    //  case MONSTER : 
-    //  break;    
-    //  default : 
-    //  break;
-    
-    //     }
-// }
 }

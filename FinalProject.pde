@@ -9,6 +9,8 @@ import uibooster.model.options.*;
 import uibooster.utils.*;
 
 static SpriteManager sm;
+static int currentX;
+static int currentY;
 UiBooster ui;
 Game game;
 PFont font;
@@ -26,6 +28,8 @@ void setup() {
     sm.start();
     cp5 = new ControlP5(this);
     game = new Game();
+    currentX = 0;
+    currentY = 0;
     // textFont(font);
     noStroke();  
 }
@@ -33,14 +37,14 @@ void setup() {
 
 void draw() {
     background(150);
-    watchPositions(mouseX, mouseY);
     fill(0);
+    trackMousePosition();
     game.drawWorld();
 }
 
-void watchPositions(int x, int y) {
+void trackMousePosition() {
     text("mouse:  " + mouseX + ", " + mouseY, 5, 15);
-    text("grid pos:    " + x + ", " + y, 5, 45);
+    // text("grid pos:    " + currentX + ", " + currentY, 5, 45);
 }
 // multiple images will be present 
 void preload() {
