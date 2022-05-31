@@ -1,44 +1,44 @@
 {"frames": [
 
 {
-	"filename": "tower_brick.png",
-	"frame": {"x":0,"y":0,"w":56,"h":91},
+	"filename": "brick.png",
+	"frame": {"x":1,"y":1,"w":93,"h":237},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":65,"y":61,"w":56,"h":91},
-	"sourceSize": {"w":56,"h":91}
+	"spriteSourceSize": {"x":0,"y":0,"w":93,"h":237},
+	"sourceSize": {"w":93,"h":237}
 },
 {
-	"filename": "tower_mortar.png",
-	"frame": {"x":168,"y":0,"w":90,"h":76},
-	"rotated": true,
-	"trimmed": false,
-	"spriteSourceSize": {"x":53,"y":83,"w":90,"h":76},
-	"sourceSize": {"w":90,"h":76}
-},
-{
-	"filename": "tower_stone.png",
-	"frame": {"x":56,"y":0,"w":56,"h":91},
+	"filename": "mortar.png",
+	"frame": {"x":286,"y":1,"w":113,"h":172},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":65,"y":61,"w":56,"h":91},
-	"sourceSize": {"w":56,"h":91}
+	"spriteSourceSize": {"x":0,"y":0,"w":113,"h":172},
+	"sourceSize": {"w":113,"h":172}
 },
 {
-	"filename": "tower_wood.png",
-	"frame": {"x":112,"y":0,"w":56,"h":91},
+	"filename": "stone.png",
+	"frame": {"x":96,"y":1,"w":93,"h":237},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":65,"y":61,"w":56,"h":91},
-	"sourceSize": {"w":56,"h":91}
+	"spriteSourceSize": {"x":0,"y":0,"w":93,"h":237},
+	"sourceSize": {"w":93,"h":237}
+},
+{
+	"filename": "wood.png",
+	"frame": {"x":191,"y":1,"w":93,"h":237},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":93,"h":237},
+	"sourceSize": {"w":93,"h":237}
 }],
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "towers.png",
 	"format": "RGBA8888",
-	"size": {"w":244,"h":91},
+	"size": {"w":400,"h":239},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:18f852110c44f4be9004b429fa054ca8:bf01da400cb82ddbe814e3c0ee51acd4:84ae74610825492ccdd391d01ed682df$"
+	"smartupdate": "$TexturePacker:SmartUpdate:780640db8a81519667751bde226a7b78:5cb5cfc732f62823afc9f73693a2b5d8:84ae74610825492ccdd391d01ed682df$"
 }
 }

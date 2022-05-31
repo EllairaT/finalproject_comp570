@@ -55,46 +55,5 @@
 				"health": 500
 			}
 		]
-	},
-	"CARD": {
-		"meta": {
-			"dataSource": "Sprites/cards.json",
-			"imgSource": "Sprites/cards.png"
-		},
-		"objects": [
-			{
-				"name": "demon",
-				"filename": "sprite_card_monster_demon.png",
-				"isAnimated": false
-			},
-			{
-				"name": "golem",
-				"filename": "sprite_card_monster_golem.png",
-				"isAnimated": false
-			}
-		]
-	},
-	"TILES": {
-		"meta": {
-			"dataSource": "Sprites/tiles.json",
-			"imgSource": "Sprites/tiles.png"
-		},
-		"objects": [
-			{
-				"name": "grass",
-				"filename": "tile_grass.png",
-				"isAnimated": false
-			},
-			{
-				"name": "tree",
-				"filename": "tile_tree.png",
-				"isAnimated": false
-			},
-			{
-				"name": "concrete",
-				"filename": "tile_concrete.png",
-				"isAnimated": false
-			}
-		]
 	}
 }

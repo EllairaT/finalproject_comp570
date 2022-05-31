@@ -11,7 +11,6 @@ import java.util.Set;
 enum SpriteType{
     TOWER,
     MONSTER,
-    TILES, 
     CARD,
 }
 

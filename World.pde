@@ -11,20 +11,24 @@ https://wintermutedigital.com/post/isometric-art-games/
 https://gamedevelopment.tutsplus.com/tutorials/creating-isometric-worlds-a-primer-for-game-developers--gamedev-6511
 
 * @author Ellaira Torio | 18021275
-*/
+*/  
 
 class World {
     Tile[][] tiles;
-    int rows = 15;
-    int cols = 15;
-    
+    int rows = 10;
+    int cols = 10;
+    PImage bg,map;
     public World() {
+        imageMode(CENTER);
         tiles = new Tile[rows][cols];
+        bg = requestImage("gamebg.png");
+        map = requestImage("map.png");
         initializeTiles();
     } 
     
     public void showWorld() {
-        drawTiles();
+        background(bg);
+        image(map, width / 2, height / 2, map.width * 1.5, height);
     }
     
     private boolean isEdgeTile(int x, int y) {
