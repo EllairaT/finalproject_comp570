@@ -6,27 +6,25 @@ class Monster extends GameEntity {
     AnimatedSprite sprite;
     
     
-    public Monster() {
-        
+    public Monster(String n) {
+        name = n;
     }
     
     
     public void walk() {}
     public void attack() {}
-    public void idle() {}
     public void playSpawnSound() {}
 }
 
 
 class Demon extends Monster {
     public Demon() {
-        // play sound file in spawn
-        super();
+        super("Demon");
     }
 }
 
 class Golem extends Monster {
     public Golem() {
-        super();
+        super("Golem");
     }
 }

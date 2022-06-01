@@ -14,7 +14,7 @@
 			"dataSource": "Sprites/monster_golem.json",
 			"imgSource": "Sprites/monster_golem.png",
 			"isAnimated": true,
-			"defaultSpeed": 0.3,
+			"defaultSpeed": 0.9,
 			"damage": 30,
 			"health": 300
 		}
@@ -27,32 +27,60 @@
 		"objects": [
 			{
 				"name": "Brick",
-				"filename": "tower_brick.png",
+				"filename": "brick.png",
 				"isAnimated": false,
 				"cost": 80,
 				"health": 1500
 			},
 			{
 				"name": "Stone",
-				"filename": "tower_stone.png",
+				"filename": "stone.png",
 				"isAnimated": false,
 				"cost": 100,
 				"health": 2000
 			},
 			{
 				"name": "Wood",
-				"filename": "tower_wood.png",
+				"filename": "wood.png",
 				"isAnimated": false,
 				"cost": 30,
 				"health": 1000
 			},
 			{
 				"name": "Mortar",
-				"filename": "tower_mortar.png",
-				"isAnimated": true,
+				"filename": "mortar.png",
+				"isAnimated": false,
 				"cost": 150,
 				"damage": 30,
 				"health": 500
+			}
+		]
+	},
+	"CARD": {
+		"meta": {
+			"dataSource": "Sprites/cards.json",
+			"imgSource": "Sprites/cards.png"
+		},
+		"objects": [
+			{
+				"name": "Brick Card",
+				"filename": "cardbrick.png",
+				"isAnimated": false
+			},
+			{
+				"name": "Stone Card",
+				"filename": "cardstone.png",
+				"isAnimated": false
+			},
+			{
+				"name": "Wood Card",
+				"filename": "cardwood.png",
+				"isAnimated": false
+			},
+			{
+				"name": "Mortar Card",
+				"filename": "cardmortar.png",
+				"isAnimated": false
 			}
 		]
 	}

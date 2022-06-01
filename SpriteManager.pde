@@ -40,12 +40,12 @@ class Meta{
 
 class SpriteManager {
     JSONObject data;
-    ArrayList<Sprite> sprites;
+    HashMap<String,Sprite> sprites;
     HashMap<String, Meta> spriteSheetData;
     File folder = new File(dataPath("Sprites"));
     
     public SpriteManager() {
-        sprites = new ArrayList<Sprite>();
+        sprites = new HashMap<String,Sprite>();
         spriteSheetData = new HashMap<String,Meta>();
         data = loadJSONObject("game_info.json");
     }
@@ -89,7 +89,7 @@ class SpriteManager {
             
             println("Creating " + key + " sprites");
             // those with the objects array have multiple sprites in one image file 
-            // so these would be tiles, tower, card
+            // so these would be tower, card
             if (value.objects != null) {            
                 for (int i = 0; i < value.objects.size(); i++) {
                     JSONObject obj = value.objects.getJSONObject(i);
@@ -105,7 +105,7 @@ class SpriteManager {
                         int h = position.getInt("h");
                         PImage spriteImg = getSpriteByPosition(value.img,x,y,w,h);
                         Sprite sprite = new Sprite(value.type, name, isAnimated, spriteImg, spriteData);
-                        sprites.add(sprite);
+                        sprites.put(name, sprite);
                     }
                 }
             }
@@ -117,7 +117,6 @@ class SpriteManager {
     }
     
     // private void createAnimatedSprite(){}
-    
     private PImage getSpriteByPosition(PImage img, int x, int y, int w, int h) {
         return img.get(x,y,w,h);
     }
@@ -133,19 +132,8 @@ class SpriteManager {
         return null;
     }
     
-    public  ArrayList<Sprite> getSpritesByType(SpriteType type) {
-        ArrayList<Sprite> newList = new ArrayList<Sprite>();
-        for (Sprite o : sprites) {
-            if (type == o.type) {
-                newList.add(o);
-            }
-        }
-        
-        return newList;
-    }
-    
     public Sprite getSpriteByName(String name) {
-        for (Sprite o : sprites) {
+        for (Sprite o : sprites.values()) {
             if (name.equals(o.name)) {
                 return o;
             }

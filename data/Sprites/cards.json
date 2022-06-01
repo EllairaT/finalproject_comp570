@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "cardbrick.png",
+	"frame": {"x":1,"y":1,"w":726,"h":954},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":24,"y":26,"w":726,"h":954},
+	"sourceSize": {"w":776,"h":1008}
+},
+{
+	"filename": "cardmortar.png",
+	"frame": {"x":729,"y":957,"w":724,"h":952},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":724,"h":952},
+	"sourceSize": {"w":724,"h":952}
+},
+{
+	"filename": "cardstone.png",
+	"frame": {"x":1,"y":957,"w":726,"h":954},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":24,"y":26,"w":726,"h":954},
+	"sourceSize": {"w":776,"h":1008}
+},
+{
+	"filename": "cardwood.png",
+	"frame": {"x":729,"y":1,"w":726,"h":954},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":24,"y":26,"w":726,"h":954},
+	"sourceSize": {"w":776,"h":1008}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "cards.png",
+	"format": "RGBA8888",
+	"size": {"w":1456,"h":1912},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:fbfb64b9861fca2ccc61e16fb522eb44:14241caa168d533e4f9edadc454e4faf:8056528aade6b91f4a89f8c9da7f2d4c$"
+}
+}

@@ -1,23 +1,43 @@
-/**
-* https://clintbellanger.net/articles/isometric_math/ 
-*
-* @author Ellaira Torio | 18021275
-*/
 
 class Tile {
-    PImage img;
-    PVector mapPosition;    //local grid position i.e. [0,5]
-    PVector screenPosition; //'true' position on the screen
-    boolean isEdgeTile;
-    static final int TILE_SIZE = 82;
-    static final int TILE_SIZE_HALF = TILE_SIZE / 2;
-    static final int TILE_SIZE_QUARTER = TILE_SIZE_HALF / 2;
-    PVector tile;
-    public Tile(boolean isEdge, int x, int y) {
-        
+    int xPos, yPos, h, w;
+    boolean isClicked;
+    GameEntity currentEntity;
+    int xOffset, yOffset;
+    
+    public Tile(int x, int y, int ww, int hh, int xOff, int yOff) {
+        rectMode(CENTER);
+        xPos = x;
+        yPos = y;
+        w = ww;
+        h = hh;
+        xOffset = xOff;
+        yOffset = yOff;
     }
     
+    public void toggleState() {
+        isClicked = !isClicked;
+    }
     
-    public void drawTile() {
-    } 
+    public void display() {
+        if (isMouseOver(mouseX - xOffset, mouseY - yOffset)) {
+            fill(255,50);
+        }
+        else{
+            noFill();
+        }
+        stroke(255, 50);
+        rect(xPos, yPos, w, h);
+    }
+    
+    public boolean isMouseOver(int x, int y) {
+        boolean isOverX = (x >= xPos && x <= xPos + w);
+        boolean isOverY = (y >= yPos && y <= yPos + h);
+        
+        if (isOverX && isOverY) {
+            return true;
+        } else{
+            return false;
+        }
+    }
 }

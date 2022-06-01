@@ -1,63 +1,58 @@
 /**
-* 
-* Isometric world generation
-* There are two important things to note:
-* converting local isometric grid coords to global screen-space coordinates
-* converting global screen-space coordinates to local isometric grid coords
-* as local X increases, global X and Y increase.
-* as local Y increases, global Y increases but X decreases. This is how we get the slanted look
-
-https://wintermutedigital.com/post/isometric-art-games/
-https://gamedevelopment.tutsplus.com/tutorials/creating-isometric-worlds-a-primer-for-game-developers--gamedev-6511
 
 * @author Ellaira Torio | 18021275
 */  
 
 class World {
-    Tile[][] tiles;
-    int rows = 10;
-    int cols = 10;
-    PImage bg,map;
+    int dim = 100; // dimensions of the tiles in the grid.
+    int gridHeight, gridWidth;
+    PImage bg,mapImg;
+    Tile[][] grid;
+    int xOffset, yOffset;
+    static PVector currentPosition // record currentPosition of mouseOver
     public World() {
-        imageMode(CENTER);
-        tiles = new Tile[rows][cols];
-        bg = requestImage("gamebg.png");
-        map = requestImage("map.png");
-        initializeTiles();
+        try {
+            bg = requestImage("Backgrounds/gamebg.png");
+            mapImg = requestImage("Backgrounds/map.png");
+            initGrid();
+        } catch(Exception e) {
+            ui.showException("Something went wrong", "Error", e);
+        }
     } 
     
     public void showWorld() {
-        background(bg);
-        image(map, width / 2, height / 2, map.width * 1.5, height);
+        drawBackground();
+        drawGrid();
     }
     
-    private boolean isEdgeTile(int x, int y) {
-        int xMin = max(0, x - 1);
-        int xMax = min(rows - 1, x + 1);
-        int yMin = max(0, y - 1);
-        int yMax = min(rows - 1, y + 1);
-        
-        if (x == xMin || x == xMax || y == yMin || y == yMax) {
-            return true;
-        } 
-        return false;
-    }
-    
-    public void initializeTiles() {
-        for (int x = 0; x < rows; x++) {
-            for (int y = 0; y < cols; y++) {
-                PVector v = new PVector(x,y);
-                Tile t = new Tile(isEdgeTile(x,y), x, y);
-                tiles[x][y] = t;
-            }
+    private void drawBackground() {
+        if (!(bg.width <= 0)) { // width 0 or less means image is not loaded yet (or error happens). 
+            imageMode(CORNER);
+            image(bg,0,0, width, height);
+            imageMode(CENTER);
+            image(mapImg, width / 2, height / 2, mapImg.width, height);
         }
     }
     
-    public void drawTiles() {
-        for (int x = 0; x < rows; x++) {
-            for (int y = 0; y < cols; y++) {
-                tiles[x][y].drawTile();
-            }
+    private void initGrid() {
+        gridHeight = floor(mapImg.height / dim);
+        gridWidth = floor(mapImg.width / dim);
+        grid = new Tile[gridWidth][gridHeight];
+    }
+    
+    public void drawGrid() {
+        if (grid.length == 0) {
+            initGrid();
         }
+        xOffset = (mapImg.width / 2) + dim - 15;
+        yOffset = dim;
+        translate(xOffset, yOffset);
+        for (int i = 0; i < gridWidth; ++i) {
+            for (int j = 0; j < gridHeight; ++j) {
+                Tile tile =  new Tile(i * dim, j * dim , dim, dim, xOffset, yOffset);
+                grid[i][j] = tile;               
+                tile.display();
+            }
+        }   
     }
 }

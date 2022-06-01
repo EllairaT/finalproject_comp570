@@ -19,9 +19,9 @@ class MainMenu {
         //     logo = requestImage("Logo_pixel.png");
         
         
-    // } catch(Exception e) {
+// } catch(Exception e) {
         //     ui.showException("Something went wrong", "Error", e);
-    // }
+// }
     }
     
     public void display() {
@@ -31,19 +31,9 @@ class MainMenu {
     }
     
     private void renderBackground() {
-        if (bgImg.width <= 0) {
-            background(0);
+        if (!(bgImg.width <= 0)) {
+            background(bgImg);
         }
-        else{
-            for (int i = 0; i < 500; i++) {
-                float x = random(width);
-                float y = random(height);
-                color c = bgImg.get(int(x),int(y));
-                fill(c);
-                noStroke();
-                rect(x,y, 10,10);
-            }
-        }  
     }
     
     private void renderLogo() {
