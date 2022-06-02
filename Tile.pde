@@ -1,7 +1,7 @@
 
 class Tile {
     int xPos, yPos, h, w;
-    boolean isClicked;
+    boolean  isSelected;
     GameEntity currentEntity;
     int xOffset, yOffset;
     
@@ -16,7 +16,7 @@ class Tile {
     }
     
     public void toggleState() {
-        isClicked = !isClicked;
+        isSelected = isSelected;
     }
     
     public void display() {

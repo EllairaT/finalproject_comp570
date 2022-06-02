@@ -111,11 +111,28 @@ class SpriteManager {
                 }
             }
             else{
-                // createAnimatedSprite();
+                
+                JSONArray frames = spritedata.getJSONArray("frames");
+                HashMap<String, PImage> anim = new HashMap<String, PImage>();
+                for (int i = 0; i < frames.size(); i++) {
+                    JSONObject frame = frames.getJSONObject(i);
+                    JSONObject pos = frame.getJSONObject("position");
+                    int x = pos.getInt("x");
+                    int y = pos.getInt("y");
+                    int w = pos.getInt("w");
+                    int h = pos.getInt("h");
+                    PImage spriteImg = getSpriteByPosition(value.img,x,y,w,h);
+                    anim.add(frame.getString("filename"),  spriteImg);
+                }
+                
+                AnimatedSprite sprite = new AnimatedSprite(value.type, key, true, value.img, value.data);
+                sprite.sortFrames(anim);
+                sprites.put(name, sprite);
             }
         }
         println("finished");
     }
+    
     
     // private void createAnimatedSprite(){}
     private PImage getSpriteByPosition(PImage img, int x, int y, int w, int h) {

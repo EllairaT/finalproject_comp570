@@ -1,7 +1,8 @@
 
 /**
 * 
-*
+* 2D adaptation of my first-person tower defense game from 2020. 
+* unfinished due to other things going on but I hope I manage to show OOP principles 
 * @author Ellaira Torio | 18021275
 */
 import controlP5.*;

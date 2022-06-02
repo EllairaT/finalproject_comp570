@@ -22,9 +22,9 @@ class Sprite {
 }
 
 class AnimatedSprite extends Sprite{
-    ArrayList<PImage> idleAnim;
     ArrayList<PImage> walkingAnim;
-    ArrayList<PImage> attackingAnim;
+    ArrayList<PImage> attackingAnim; 
+    
     int length, index;
     float speed;
     
@@ -32,8 +32,20 @@ class AnimatedSprite extends Sprite{
         super(t,n,b,sh,d);
     }
     
-    private void findFrames(ArrayList<PImage> animation) {}
-    public void animateIdle() {}
+    private void sortFrames(ArrayList<PImage> anim) {
+        for (Map.Entry < String, PImage > entry : anim.entrySet()) {
+            String key = entry.getKey();
+            PImage img = entry.getValue();
+            
+            if (key.contains("walk")) {
+                walkingAnim.put(img);
+            }
+            else{
+                attackingAnim.put(img);
+            }
+        }   
+    }
+    
     public void animateWalk() {}
     public void animateAttack() {}
 }

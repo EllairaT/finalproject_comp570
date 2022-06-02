@@ -9,11 +9,8 @@ class Monster extends GameEntity {
     public Monster(String n) {
         name = n;
     }
-    
-    
     public void walk() {}
     public void attack() {}
-    public void playSpawnSound() {}
 }
 
 
