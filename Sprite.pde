@@ -16,6 +16,7 @@ class Sprite {
     public PImage getImage() {
         return spriteImg;
     }
+    
     public void showSprite() {}
     
 }

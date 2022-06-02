@@ -1,51 +1,50 @@
-import controlP5.*;
-
-
-import uibooster.*;
-import uibooster.components.*;
-import uibooster.model.*;
-import uibooster.model.formelements.*;
-import uibooster.model.options.*;
-import uibooster.utils.*;
-
-static SpriteManager sm;
-static int currentX;
-static int currentY;
-UiBooster ui;
-Game game;
-PFont font;
-ControlP5 cp5;
-
 
 /**
-Setting up variables and libraries to be used globally.
+* 
+*
+* @author Ellaira Torio | 18021275
 */
+import controlP5.*;
+import java.util.Map;
+
+
+PFont font;
+Game game;
+ControlP5 cp5;
+Controller fps;
+boolean isDevMode;
+static GameStateManager gsm;
+Textlabel gameInfo;
+
+public enum GameState{
+    ENTERED, RUNNING, PAUSED, QUITTING
+} 
+
 void setup() {
     fullScreen(P2D);
-    // size(500,500,P2D);
-    surface.setResizable(true);
     surface.setTitle("RESISTANCE");
-    font = loadFont("Fonts/Onyx-64.vlw");
-    sm = new SpriteManager();
-    sm.start();
+    isDevMode = false;
     cp5 = new ControlP5(this);
-    game = new Game();
-    currentX = 0;
-    currentY = 0;
-    textFont(font);
+    gsm = new GameStateManager(this);
+    fps =  cp5.addFrameRate().setInterval(5).setPosition(0,height - 10);
+    setDevControls();
     noStroke();  
-    
-    
 }
 
 void draw() {
     background(150);
-    fill(0);
-    game.drawWorld();
+    gsm.updateDisplay();
 }
 
-// multiple images will be present 
-void preload() {
-    
+void keyPressed() {
+    // I see you, Mac users.
+    if (key == ENTER || key == RETURN) {
+        gsm.setState(GameState.RUNNING);
+    }
 }
 
+// helper function to switch between states quickly 
+void setDevControls() {
+    cp5.mapKeyFor(new ControlKey() { public void keyEvent() { gsm.setState(GameState.ENTERED); } } , '1');
+    cp5.mapKeyFor(new ControlKey() { public void keyEvent() { gsm.setState(GameState.RUNNING); } } , '2');
+}

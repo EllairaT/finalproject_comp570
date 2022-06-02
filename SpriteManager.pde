@@ -48,6 +48,7 @@ class SpriteManager {
         sprites = new HashMap<String,Sprite>();
         spriteSheetData = new HashMap<String,Meta>();
         data = loadJSONObject("game_info.json");
+        start();
     }
     
     // it is far better to load each spritesheet once and then get the actual image data
@@ -142,7 +143,6 @@ class SpriteManager {
     }
     
     public void start() {
-        println("loading and creating sprites...");
         loadData();
         createSprites();
     }

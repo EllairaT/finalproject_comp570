@@ -5,18 +5,15 @@ import processing.event.*;
 import processing.opengl.*;
 
 import controlP5.*;
-import uibooster.*;
-import uibooster.components.*;
-import uibooster.model.*;
-import uibooster.model.formelements.*;
-import uibooster.model.options.*;
-import uibooster.utils.*;
-import java.util.Stack;
 import java.util.Map;
+import ch.bildspur.postfx.builder.*;
+import ch.bildspur.postfx.pass.*;
+import ch.bildspur.postfx.*;
 import java.util.Map;
 import java.io.File;
 import java.util.Iterator;
 import java.util.Set;
+import com.jogamp.newt.event.KeyEvent;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -35,51 +32,55 @@ public class FinalProject extends PApplet {
 
 
 
-
-
-
-
-static SpriteManager sm;
-static int currentX;
-static int currentY;
-UiBooster ui;
 Game game;
 PFont font;
 ControlP5 cp5;
+Controller fps;
+boolean isDevMode;
+static GameStateManager gsm;
+Textlabel gameInfo;
+PostFX fx;
 
 
+public enum GameState{
+    ENTERED, RUNNING, PAUSED, QUITTING
+} 
 /**
 Setting up variables and libraries to be used globally.
 */
  public void setup() {
     /* size commented out by preprocessor */;
-    // size(500,500,P2D);
-    surface.setResizable(true);
     surface.setTitle("RESISTANCE");
-    font = loadFont("Fonts/Onyx-64.vlw");
-    sm = new SpriteManager();
-    sm.start();
+    isDevMode = false;
     cp5 = new ControlP5(this);
-    game = new Game();
-    currentX = 0;
-    currentY = 0;
-    textFont(font);
+    gsm = new GameStateManager(this);
+    fps =  cp5.addFrameRate().setInterval(5).setPosition(0,height - 10);
+    fx = new PostFX(this);  
+    setDevControls();
     noStroke();  
-    
-    
 }
 
  public void draw() {
     background(150);
-    fill(0);
-    game.drawWorld();
+    gsm.updateDisplay();
+    fx.render()
+       .sobel()
+       .bloom(0.5f, 20, 30)
+       .compose();
 }
 
-// multiple images will be present 
- public void preload() {
-    
+ public void keyPressed() {
+    // I see you, Mac users.
+    if (key == ENTER || key == RETURN) {
+        gsm.setState(GameState.RUNNING);
+    }
 }
 
+
+ public void setDevControls() {
+    cp5.mapKeyFor(new ControlKey() {public void keyEvent() { gsm.setState(GameState.ENTERED);} } , '1');
+    cp5.mapKeyFor(new ControlKey() {public void keyEvent() { gsm.setState(GameState.RUNNING);} } , '2');
+}
 /**
 * Game class contains the game state and general methods and helper functions. 
 *
@@ -87,9 +88,9 @@ Setting up variables and libraries to be used globally.
 */
 
 class Game {
-    
-    
     World world;
+    
+    
     
     public Game() {
         
@@ -97,18 +98,9 @@ class Game {
         
     }
     
-    
-    
-    public void displayMainMenu() {
-        // mainMenu.display();       
-        
-    }
-    
-    public void drawWorld() {
+    public void display() {
         world.showWorld();
     }
-    
-    
 }
 /**
 * 
@@ -136,23 +128,45 @@ abstract class GameEntity{
     }
 }
 /**
-* This GSM uses a stack for game states
 *
 * @author Ellaira Torio | 18021275
 */
-
-
-enum GameState{
-    ENTERED, RUNNING, PAUSED, QUITTING
-}
-
 class GameStateManager {
-    Stack<String> s = new Stack<String>();
+    GameState currentState;
+    MainMenu menu;
+    Game game;
+    SpriteManager sm;
     
-    public GameStateManager() {
-        
+    public GameStateManager(PApplet p) { //need this to be able to register events.     
+        currentState = GameState.ENTERED; 
+        sm = new SpriteManager();
+        menu = new MainMenu();
+        game = new Game();
     }
     
+    public GameState getCurrentState() {
+        return currentState;
+    }
+    
+    // update display based on the current state
+    // this is called in the draw function 
+    public void updateDisplay() {
+        switch(currentState) {
+            case ENTERED :
+                menu.display();
+                break;	
+            case RUNNING :
+                game.display();
+                break;
+            case QUITTING :
+                break;
+        }
+    }
+    
+    public void setState(GameState state) {
+        currentState = state;
+        println("Gamestate now set to " + state);
+    }
 }
 
 /**
@@ -164,31 +178,31 @@ class GameStateManager {
 
 
 
+
 class MainMenu {
     PImage bgImg; 
     PImage logo; 
     String[] options = new String[]{"play", "tutorial", "exit"};
     
     public MainMenu() {
-        // try {
-        //     bgImg = requestImage("menu_bg.png");
-        //     logo = requestImage("Logo_pixel.png");
-        
-        
-// } catch(Exception e) {
-        //     ui.showException("Something went wrong", "Error", e);
-// }
+        try {
+            bgImg = requestImage("Backgrounds/menu_bg.png");
+            logo = requestImage("Logo_pixel.png");
+        } catch(Exception e) {
+            println("Error: " + e.toString());
+        }
     }
     
     public void display() {
-        renderTextButtons();
         renderBackground();
         renderLogo();
+        renderTextButtons();
     }
     
     private void renderBackground() {
+        imageMode(CORNER);
         if (!(bgImg.width <= 0)) {
-            background(bgImg);
+            image(bgImg,0,0, width, height);   
         }
     }
     
@@ -199,32 +213,11 @@ class MainMenu {
     }
     
     private void renderTextButtons() {
-        int spacing = 120;
+        int spacing = 150;
         fill(255);
-        textAlign(CENTER);
-        // text("PLAY", logo.width / 2, logo.height + spacing);
-        // text("TUTORIAL", logo.width / 2, logo.height + (spacing * 2));
-        // text("EXIT", logo.width / 2, logo.height + (spacing * 3));
-        
-        
-        for (int i = 0; i < options.length; i++) {
-            cp5.addTextlabel(options[i] + "_btn")
-               .setText(options[i])
-               .setPosition(logo.width / 2, logo.height + (spacing * i))
-               .setColorValue(255)
-               .setFont(font);
-        }
+        textSize(50);
+        text("Press enter to continue",(logo.width / 2) - 250, logo.height + spacing);
     }
-    // public void play(float value) {
-    //     println(value);
-// }
-    
-    public void clickHandler() {
-        println("lmao nice");
-    }
-    // public void exit(float value) {
-    //  println(value);
-// }
 }
 class Monster extends GameEntity {
     String name;
@@ -256,7 +249,6 @@ class Golem extends Monster {
         super("Golem");
     }
 }
-
 class Sprite {
     SpriteType type;
     String name;
@@ -345,6 +337,7 @@ class SpriteManager {
         sprites = new HashMap<String,Sprite>();
         spriteSheetData = new HashMap<String,Meta>();
         data = loadJSONObject("game_info.json");
+        start();
     }
     
     // it is far better to load each spritesheet once and then get the actual image data
@@ -439,7 +432,6 @@ class SpriteManager {
     }
     
     public void start() {
-        println("loading and creating sprites...");
         loadData();
         createSprites();
     }
@@ -495,12 +487,28 @@ class Tower extends GameEntity{
 * @author Ellaira Torio | 18021275
 */  
 
+
+
+enum KeyBind { 
+    MOVEUP(UP), MOVEDOWN(DOWN), MOVELEFT(LEFT), MOVERIGHT(RIGHT), CONFIRM(KeyEvent.VK_SPACE), CARDVIEW(TAB);
+    
+    private final int code;
+    private KeyBind(int c) {
+        this.code = c;
+    }
+    
+    public int getCode() {
+        return code;
+    }
+}
+
 class World {
     int dim = 100; // dimensions of the tiles in the grid.
     int gridHeight, gridWidth;
     PImage bg,mapImg;
     Tile[][] grid;
     int xOffset, yOffset;
+    PVector currentPosition; // record currentPosition of mouseOver
     
     public World() {
         try {
@@ -508,7 +516,7 @@ class World {
             mapImg = requestImage("Backgrounds/map.png");
             initGrid();
         } catch(Exception e) {
-            ui.showException("Something went wrong", "Error", e);
+            println("something happened: " + e.toString());
         }
     } 
     
@@ -538,14 +546,17 @@ class World {
         }
         xOffset = (mapImg.width / 2) + dim - 15;
         yOffset = dim;
+        pushMatrix();
+        
         translate(xOffset, yOffset);
         for (int i = 0; i < gridWidth; ++i) {
             for (int j = 0; j < gridHeight; ++j) {
                 Tile tile =  new Tile(i * dim, j * dim , dim, dim, xOffset, yOffset);
-                grid[i][j] = tile;               
+                grid[i][j] = tile;   
                 tile.display();
             }
         }   
+        popMatrix();
     }
 }
 

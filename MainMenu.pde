@@ -6,7 +6,6 @@
 * @author Ellaira Torio | 18021275
 */
 
-import java.util.Map;
 
 class MainMenu {
     PImage bgImg; 
@@ -14,25 +13,24 @@ class MainMenu {
     String[] options = new String[]{"play", "tutorial", "exit"};
     
     public MainMenu() {
-        // try {
-        //     bgImg = requestImage("menu_bg.png");
-        //     logo = requestImage("Logo_pixel.png");
-        
-        
-// } catch(Exception e) {
-        //     ui.showException("Something went wrong", "Error", e);
-// }
+        try {
+            bgImg = requestImage("Backgrounds/menu_bg.png");
+            logo = requestImage("Logo_pixel.png");
+        } catch(Exception e) {
+            println("Error: " + e.toString());
+        }
     }
     
     public void display() {
-        renderTextButtons();
         renderBackground();
         renderLogo();
+        renderTextButtons();
     }
     
     private void renderBackground() {
+        imageMode(CORNER);
         if (!(bgImg.width <= 0)) {
-            background(bgImg);
+            image(bgImg,0,0, width, height);   
         }
     }
     
@@ -43,30 +41,9 @@ class MainMenu {
     }
     
     private void renderTextButtons() {
-        int spacing = 120;
+        int spacing = 150;
         fill(255);
-        textAlign(CENTER);
-        // text("PLAY", logo.width / 2, logo.height + spacing);
-        // text("TUTORIAL", logo.width / 2, logo.height + (spacing * 2));
-        // text("EXIT", logo.width / 2, logo.height + (spacing * 3));
-        
-        
-        for (int i = 0; i < options.length; i++) {
-            cp5.addTextlabel(options[i] + "_btn")
-               .setText(options[i])
-               .setPosition(logo.width / 2, logo.height + (spacing * i))
-               .setColorValue(255)
-               .setFont(font);
-        }
+        textSize(50);
+        text("Press enter to continue",(logo.width / 2) - 250, logo.height + spacing);
     }
-    // public void play(float value) {
-    //     println(value);
-// }
-    
-    public void clickHandler() {
-        println("lmao nice");
-    }
-    // public void exit(float value) {
-    //  println(value);
-// }
 }

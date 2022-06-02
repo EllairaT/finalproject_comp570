@@ -1,6 +1,6 @@
 /**
 * 
-*
+* Towers and monsters will extend this class
 * @author Ellaira Torio | 18021275
 */
 abstract class GameEntity{
